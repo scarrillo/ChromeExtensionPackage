@@ -1,0 +1,3 @@
+Ant script to automatically publish a chrome extension from within eclipse, generate an updates.xml, and exclude private project files from being added to the final .crx file.
+
+Before using, configure the script by changing properties that contain "##EDIT##". Careful not to remove all of the "##EDIT##" strings, some are used for configuration validation.
