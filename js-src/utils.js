@@ -1,5 +1,4 @@
 /**
- * @preserve
  * @author: shawn.carrillo+chrome@gmail.com
  * date: 2012.07.15
  */

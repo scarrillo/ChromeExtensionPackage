@@ -1,37 +1,44 @@
-Build scripts to prepare and package a Google Chrome App or Extension.
-The script generates a zip file for the Chrome Webstore and a .crx for hosting on a custom domain.
+## Chrome Extension/App Ant scripts
 
-Features:
-	- The packages are prepared with auto updating in mind. Generating updates.xml for .crx deployment and packaging key.pem in the zip for uploading to the webstore.
+    Build scripts to prepare and package a Google Chrome App or Extension.
+    The script generates a zip file for the Chrome Webstore and a .crx for hosting on a custom domain.
 
-	- The unpackaged build folder can be used directly in google chrome's "Load Unpackaged Extension" for rapid development. Useful for loading *only* the extension code, excluding any misc project files.
+### Features:
+	* The packages are prepared with auto updating in mind. Generating updates.xml for .crx deployment and packaging key.pem in the zip for uploading to the webstore.
 
-	- Exclude private project files from being added to the final deployable packages.
-		Examples: uncompiled source files, build scripts, and private key files.
 
-	- Originally intended to be run within eclipse on windows. Now being developed for building within Sublime text on Mac OSX. The only requirement being Ant.
+	* The unpackaged build folder can be used directly in google chrome's "Load Unpackaged Extension" for rapid development. Useful for loading *only* the extension code, excluding any misc project files.
 
-	- Optionally compile javascript using the included Google Closure Compiler.
-		I thought there may be some interest in my current extension workflow. The compiler.jar is included for completeness and so that I can reuse it quickly in other projects.
 
-		I've also included a few basic javascript files to test closure with advanced optimizations enabled.See the powerful optimizations closure makes on your javascript. Feel free to junk them or use them as a starting point for new extensions (with or without closure).
+	* Exclude private project files from being added to the final deployable packages. *Examples:* uncompiled source files, build scripts, and private key files.
 
-		There are many benefits when using advanced optimizations.
+
+	* Originally intended to be run within eclipse on windows. Now being developed for building within Sublime text on Mac OSX. The only requirement being Ant.
+
+
+	* Optionally compile javascript using the included Google Closure Compiler.
+
+        I thought there may be some interest in my current extension workflow. The compiler.jar is included for completeness and so that I can reuse it quickly in other projects.
+
+        I've also included a few basic javascript files to test closure with advanced optimizations enabled.See the powerful optimizations closure makes on your javascript. Feel free to junk them or use them as a starting point for new extensions (with or without closure).
+
+        There are many benefits when using advanced optimizations.
 		I've also included a custom externs.js containing defs for chrome and jquery
 
-		Credit for the closure ant script goes to google.
-		Source url: http://code.google.com/p/closure-compiler/wiki/BuildingWithAnt
+        Credit for the closure ant script goes to google.
+        Source url: http://code.google.com/p/closure-compiler/wiki/BuildingWithAnt
 
 
-Quick Start:
-	1) Place your private key in the .cert folder:
+### Quick Start:
+	1. Place your private key in the .cert folder:
 		/.cert/NewExtension.pem - Change 'NewExtension' to the name of your extension.
 
-	2) Edit build.properties:
+	2. Edit build.properties:
 		Change 'name', 'version', and the full path to the Google Chrome installation path.
 		Windows and Mac path examples provided.
 
-	3) Review manifest.json:
+	3. Review manifest.json:
+
 		Make any custom changes your extension requires.
 
 		Note that 'name' and 'version' will be added from the values set in the previous step. Defined in build.properties. Do not change the values in manifest.json.
@@ -40,71 +47,82 @@ Quick Start:
 
 		Images, provide them!
 
-	4) Run build.xml
+	4. Run build.xml
 
-	5) Test in Chrome: Load Unpackaged Extension
+	5. Test in Chrome: Load Unpackaged Extension
+
 		Select this file: /.build/NewExtension/
-
 		OSX Hint: in the select dialog hit: cmd+shift+. to display hidden folders like: .build/
 
 
-Further Details:
+## Further Details:
 
-Build scripts:
-	build.xml:
+### Build scripts:
+	* build.xml:
 		This is the master build file that executes the closure and extension build scripts in order.
 
-	Sublime Text users:
-		This is the entry point script I use with Sublime's build system. Command + B
-		Sublime Text really shows the power of these build scripts. (windows and mac)
-		http://www.sublimetext.com/
+	    - Sublime Text users:
 
-	build-closure.xml
+		    This is the entry point script I use with Sublime's build system. Command + b
+		    Sublime Text really shows the power of these build scripts. (windows and mac)
+		    http://www.sublimetext.com/
+
+	* build-closure.xml
+
 		The javascript compilation script. This is where you declare your compiled packages and the scripts that comprise them. Parameters of note:
 
-			compilationLevel="advanced"
-				Compilation with ADVANCED_OPTIMIZATIONS achieves extra compression by being more aggressive in the ways that it transforms code and renames symbols. However, this more aggressive approach means that you must take greater care to ensure that the output code works the same way as the input code
+			- compilationLevel="advanced"
+
+				> "Compilation with ADVANCED_OPTIMIZATIONS achieves extra compression by being more aggressive in the ways that it transforms code and renames symbols. However, this more aggressive approach means that you must take greater care to ensure that the output code works the same way as the input code"
 
 				other options: simple | whitespace | advanced
-			warning="verbose"
+
+			- warning="verbose"
+
 				other options quiet | verbose | default
 
-			prettyPrint="false"
+			- prettyPrint="false"
+
 				This preserves spacing and line breaks. Even during advanced compilation. enable for debugging, disable for production.
 
-			forceRecompile="false"
+			- forceRecompile="false"
+
 				Force closure to recompile your scripts even if they have not been modified. For instance, when changing library dependencies or compiler settings.
 
-	    	debug="false"
+	    	- debug="false"
+
 	    		Leaves debug flags in the compressed code.
 
-	build-extension.xml
-		The happy reason for this git repo. :)
-		This script does the work of packaging your extension for the google chrome store as well as outputting a .crx file for hosting on your own website. This script can be reused to compile updates as well. Just increment the version and build.
+    * build-extension.xml
 
-		build.properties
-			This is where your extensions properties are defined for 'build-extension.xml' ant script.
-			Set name, version, id, and the location of Chrome application on your computer.
+        This script does the work of packaging your extension for the google chrome store as well as outputting a .crx file for hosting on your own website. This script can be reused to compile updates as well. Just increment the version and build.
 
-		Output Files:
-			All generated files will live under the .build folder. OSX users need to unhide this folder.
-			http://osxdaily.com/2009/02/25/show-hidden-files-in-os-x/
+		- build.properties
 
-			/.build/Extension/
+            This is where your extensions properties are defined for 'build-extension.xml' ant script.
+            Set name, version, id, and the location of Chrome application on your computer.
+
+		- Output Files:
+
+            All generated files will live under the .build folder. OSX users need to unhide this folder.
+            http://osxdaily.com/2009/02/25/show-hidden-files-in-os-x/
+
+			+ /.build/Extension/
 				- Uncompressed folder, used for loading directly into chrome during development
 
-			/.build/Extension.zip
+			+ /.build/Extension.zip
 				- Compressed zip for uploading directly into Google Chrome webstore
 				- Warning: This zip file contains key.pem, which is stripped out during upload to the webstore.
 
-			/.build/Extension.crx
+			+ /.build/Extension.crx
 				- Compressed package for hosting your own extension with automatic updates
 
-			/.build/updates.xml
+			+ /.build/updates.xml
 				- This file is for use with a hosted .crx - Enables auto updated by incrementing the version
 
 
-Closure Compiler:
+### Closure Compiler:
+
 	I've packaged a version of closure compiler library so that this is a complete working set of scripts.
 	Version: r1918 - Apr 30, 2012
 
@@ -112,15 +130,25 @@ Closure Compiler:
 	http://code.google.com/p/closure-compiler/downloads/list
 
 
-Externs: /js-src/goog/externs.js
+#### Externs: /js-src/goog/externs.js
+
 	This is a start externs file for use with closure and chrome extensions (including jquery).
 	More information:
 		https://developers.google.com/closure/compiler/docs/api-tutorial3
 
-utils.js - Example starter code to see the effects of google closure compiler. Feel free to junk it or use.
+#### Scripts
+
+    * /js-src/utils.js
+
+	Example starter code to see the effects of google closure compiler. Feel free to junk it or use.
 	utils.log(...) is also an example of static conditionals. It takes advantage of the compiler removing unreachable code for debug logging. Logging statements will never make it into production.
 
-info.js
-	Example of using the @preserve declaration to tell closure compiler to preserve comments in the compiled source files. I add it in an external javascript so that I can keep the auther comments at the top.
+    * /js-src/info.js
 
-	See: /js/background.js for the output 
+	Example of using the @preserve declaration to tell closure compiler to preserve comments in the compiled source files. Added in an external javascript so that I can keep the auther comments at the top.
+
+    * /js/background.js
+
+	The closure compiled js file. This is the only file that will make it into production.
+
+

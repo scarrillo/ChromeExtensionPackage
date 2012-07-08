@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    @author: shawn.carrillo@gmail.com
+    author: shawn.carrillo+chrome@gmail.com
     date: 2011-08-05
+    ChromeExtensionPackage: https://github.com/scarrillo/ChromeExtensionPackage
 
-    @description: MasterBuild file executes:
+    MasterBuild file executes:
         - google closure compiler build
         - google chrome app/extension build
 -->

@@ -1,12 +1,5 @@
 /*
- Copyright 2012 Shawn Carrillo
- @author: shawn.carrillo+chrome@gmail.com
- date: 2012.08.12
- @description Extension Name
+ Extension Compiled using ChromeExtensionPackage: 
+ https://github.com/scarrillo/ChromeExtensionPackage
 */
-/*
-
- @author: shawn.carrillo+chrome@gmail.com
- date: 2012.07.15
-*/
-function a(){this.a()}a.prototype={name:chrome.app.getDetails().name,version:chrome.app.getDetails().version,a:function(){var b="Extension: "+this.name+" - "+this.version;void 0===console.info?console.log(b):console.info(b)}};new a;
+function a(b,c){if(void 0===console[c])console.log(b);else console[c](b)};function d(){a("Extension constructor");this.a()}d.prototype={name:chrome.app.getDetails().name,version:chrome.app.getDetails().version,a:function(){a("Extension: "+this.name+" - "+this.version,"info")}};new d;

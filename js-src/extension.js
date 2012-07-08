@@ -1,9 +1,14 @@
+/**
+ * @author: shawn.carrillo+chrome@gmail.com
+ * date: 2012.07.15
+ */
 goog.provide("Extension");
 /**
  * Example Extension
  * @constructor
  */
 Extension = function() {
+	utils.log("Extension constructor");
 	this.doLoaded();
 }
 
