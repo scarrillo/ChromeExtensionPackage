@@ -1,14 +1,17 @@
 ### Chrome Extension/App Ant scripts
     Build scripts to prepare and package a Google Chrome App or Extension.
-    The script generates a zip file for the Chrome Webstore and a .crx for hosting on a custom domain.
+    The script generates a zip file for the Chrome Webstore and a .crx for hosting on a private domain.
 
     This project also now contains a google closure compiler starter project.
-    Combined with the package script, this is a simple demonstration of my current workflow utilizing closure.
+    Combined with the package build script, it's a basic demonstration of my current workflow utilizing closure.
 
 ##### Features:
- * The packages are prepared with auto updating in mind. Generating updates.xml for .crx deployment and packaging key.pem in the zip for uploading to the webstore.
+ * The packages are prepared with auto updating in mind.
+     - Generating updates.xml for .crx deployment
+     - Packages key.pem in the zip for uploading to the webstore. This key is stripped out by the store.
  * The unpackaged build folder can be used directly in google chrome's "Load Unpackaged Extension" for rapid development. Useful for loading *only* the extension code, excluding any misc project files.
- * Exclude private project files from being added to the final deployable packages. *Examples:* uncompiled source files, build scripts, and private key files.
+ * Exclude private project files from being added to the final deployable packages.
+     - *Examples:* uncompiled source files, build scripts, and private key files.
  * Originally intended to be run within eclipse on windows. Now being developed for building within Sublime text on Mac OSX. The only requirement being Ant.
  * Optionally compile javascript using the included Google Closure Compiler.
 
@@ -27,8 +30,7 @@
 
  2. Edit build.properties:
 
-    Change 'name', 'version', and the full path to the Google Chrome installation path.
-	Windows and Mac path examples provided.
+    Change 'name', 'version', and the full path to the Google Chrome installation path. Windows and Mac path examples provided.
 
  3. Review manifest.json:
 
@@ -109,10 +111,9 @@
 			- This file is for use with a hosted .crx - Enables auto updated by incrementing the version
 
 
-## Closure Compiler:
-
-	I've packaged a version of closure compiler library so that this is a complete working set of scripts.
-	Version: r1918 - Apr 30, 2012
+### Closure Compiler
+	This project bundles a version of closure compiler library so that this is a complete working set of build scripts.
+	*Version:* r1918 - Apr 30, 2012
 
 	Please do update your version of compiler.jar as needed.
 	http://code.google.com/p/closure-compiler/downloads/list
@@ -121,8 +122,7 @@
  * /js-src/goog/externs.js
 
 	Externs, hints for the compiler. This is only a starter externs file. Contains entries for closure, chrome extensions, and jquery.
-	More information:
-		https://developers.google.com/closure/compiler/docs/api-tutorial3
+	More information: https://developers.google.com/closure/compiler/docs/api-tutorial3
 
  * /js-src/utils.js
 
