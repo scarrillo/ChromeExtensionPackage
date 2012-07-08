@@ -63,11 +63,8 @@
 				<exclude name=".project" />
 				<exclude name=".gitignore" />
 				<exclude name="build.xml" />
-				<exclude name="build-closure.xml" />
-				<exclude name="build-extension.xml" />
 				<exclude name="publish-extension-ant-build.xml" />
-				<exclude name="extension.properties" />
-				<exclude name="updates.template.xml" />
+				<exclude name="updates.xml" />
 				<exclude name="README" />
 			</fileset>
 		</copy>
@@ -123,7 +120,7 @@
 	</target>
 
 	<target name="updates" description="create updates.xml" if="build.execute">
-		<copy file="updates.template.xml" tofile="${build}updates.xml" overwrite="true" force="true">
+		<copy file="updates.xml" tofile="${build}updates.xml" overwrite="true" force="true">
 			<filterchain>
 				<replacetokens>
 					<token key="extension_id" value="${ext.id}" />
