@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    @author: shawn.carrillo@gmail.com
+    date: 2011-08-05
+
+    @description: MasterBuild file executes:
+        - google closure compiler build
+        - google chrome app/extension build
+-->
+<project name="MasterBuild" default="Master:BuildAll">
+    <target name="Master:BuildAll">
+    	<echo message="executing build targets" />
+		<antcall target="Master:Compile" />
+		<antcall target="Master:Package" />
+    </target>
+    <target name="Master:Compile">
+		<echo message="executing closure compiler" />
+    	<subant>
+          <fileset dir="." includes=".build/build-closure.xml" />
+        </subant>
+    </target>
+    <target name="Master:Package">
+		<echo message="executing chrome packager" />
+        <subant target="package">
+          <fileset dir="."  includes=".build/build-extension.xml" />
+        </subant>
+    </target>
+</project>

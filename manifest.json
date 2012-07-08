@@ -1,0 +1,18 @@
+{
+	"manifest_version": 2,
+	"name": "@extension_name@",
+	"version": "@extension_version@",
+	//"options_page": "",
+	"description": "",
+  	"permissions": [
+		"tabs"
+	],
+	"omnibox": { "keyword" : "Extension!" },
+	"icons": {
+		"16": "images/icon-16x16.png"
+	},
+
+	"background" : {
+		"scripts": [ "js/background.js" ]
+	}
+}

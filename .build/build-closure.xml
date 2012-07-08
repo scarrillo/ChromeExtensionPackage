@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Closure Ant script credit: 
+http://code.google.com/p/closure-compiler/wiki/BuildingWithAnt
+-->
+<project basedir="../" default="compile">
+
+	<taskdef name="jscomp" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="${basedir}/lib/compiler.jar" />
+	
+	<target name="compile">
+		<jscomp compilationLevel="advanced" warning="verbose" prettyPrint="false" forceRecompile="true"
+	    		debug="false" output="js/background.js">
+	
+			<externs dir="${basedir}/js-src/goog">
+				<file name="extern.js" />
+	  		</externs>
+	
+			<sources dir="${basedir}/js-src">
+				<file name="info.js" />
+				<file name="utils.js" />
+				<file name="extension.js" />
+			</sources>
+		</jscomp>
+
+		<!-- Add multiple jscomp nodes -->
+	</target>
+
+</project>

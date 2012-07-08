@@ -1,3 +1,6 @@
+<!--
+	2012-08: Warning, this file has been superseded by: build-extension.xml
+-->
 <project name="ChromeExtensionPackage" default="package" basedir=".">
 	<description>
 		Package a google chrome extension and exclude private files that should never be published.
