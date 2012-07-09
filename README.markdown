@@ -5,6 +5,10 @@
     This project also now contains a google closure compiler starter project.
     Combined with the package build script, it's a basic demonstration of my current workflow utilizing closure.
 
+##### Deprecated: publish-extension-ant-build.xml
+
+    This script has been superseded by /.build/build-extension.xml
+
 ##### Features
  * The packages are prepared with auto updating in mind.
      - Generating updates.xml for .crx deployment
