@@ -17,8 +17,11 @@
 
         I've included the closure compiler.jar for completeness and so that I can reuse it quickly in new projects.
         The sample starter project is setup to build using closure with advanced optimizations enabled.
-        Demonstrating externs, annotations, and minified and concat packages. As well as the powerful optimizations closure makes on your javascript.
-        Junk these and disable closure or use them as a starting point for new extensions (with or without closure).
+        Demonstrating externs, annotations, and minified and concat packages.
+        As well as the powerful optimizations closure makes on your javascript.
+        
+        Use them as a starting point for new extensions (with or without closure) or delete them
+        and disable the closure build script
 
         Credit for the closure ant script goes to google.
         Source url: http://code.google.com/p/closure-compiler/wiki/BuildingWithAnt
@@ -111,7 +114,7 @@
 
 ### Closure Compiler
 	This project bundles a version of closure compiler library so that this is a complete working set of build scripts.
-	*Version:* r1918 - Apr 30, 2012
+	Version: r1918 - Apr 30, 2012
 
 	Please do update your version of compiler.jar as needed.
 	http://code.google.com/p/closure-compiler/downloads/list
