@@ -1,19 +1,12 @@
 ##### Sample Chrome extension:
-    - Demonstration of the main chrome extension packager script.
-    - Demonstration of using the google chrome compiler to optimize, obfuscate, and concat javascript files. 
 
- 
-        I've included the closure compiler.jar for completeness and so that I can reuse it quickly in new projects.
-        The sample starter project is setup to build using closure with advanced optimizations enabled.
-        Demonstrating externs, annotations, and minified and concat packages.
-        As well as the powerful optimizations closure makes on your javascript.
-        
-        Use them as a starting point for new extensions (with or without closure) or delete them
-        and disable the closure build script
 
-        Credit for the closure ant script goes to google.
-        Source url: http://code.google.com/p/closure-compiler/wiki/BuildingWithAnt
+* Demonstration of the main [chrome extension packager script](https://github.com/scarrillo/ChromeExtensionPackage/).
+* Demonstration of using the google chrome compiler to optimize, obfuscate, and concat javascript files. 
 
+I've included the closure compiler.jar for completeness and so that I can reuse it quickly in new projects.
+The sample starter project is setup to build using closure with advanced optimizations enabled.
+Demonstrating externs, annotations, and minified and concat packages.
 
 ##### Build scripts
  * build.xml:
@@ -29,7 +22,10 @@
 
  * build-closure.xml
 
-	The javascript compilation script. This is where you declare your compiled packages and the scripts that comprise them. Parameters of note:
+	The javascript compilation script. This is where you declare your compiled packages and the scripts that comprise them.
+	Credit to google for the [closure ant script/compile task](http://code.google.com/p/closure-compiler/wiki/BuildingWithAnt)
+
+	Parameters of note:
 
 	- compilationLevel="advanced"
 
