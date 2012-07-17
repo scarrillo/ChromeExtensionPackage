@@ -25,7 +25,7 @@
         Sublime Text really shows the power of these build scripts. (windows and mac)
         http://www.sublimetext.com/
 
- * Details for the extension build script in the parent folder.
+ * [Details for the main extension build script.]([NewExtension](https://github.com/scarrillo/ChromeExtensionPackage/)
 
  * build-closure.xml
 
