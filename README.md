@@ -4,7 +4,7 @@
 
 ##### Features
  * The packages are prepared with auto updating in mind.
-     - Creates an unpackaged build folder that can be loaded in chrome's "Load Unpackaged Extension" for rapid development.
+     - Creates an unpackaged build folder that can be loaded in chrome's "Load Unpackaged Extension" for rapid development and testing of only production ready files.
      - Generates a deployable extension.crx and updates.xml for hosting on your own website
      - Generates a deployable extension.zip file for uploading to the Chrome webstore. key.pem is added to the zip, but will be stripped out by the webstore.
      - Reuse for fast updates to the webstore. Just increment the version in build.properties, rebuild, and reupload. 
@@ -14,8 +14,8 @@
      - See the exclude file list in build-extension.xml
 
  * NewExtension:
-    This project also contains an example Chrome extension to demonstrate the workflow. Please see the "NewExtension" folder.
-    Includes a demo using the google closure compiler to optimize, obfuscate, and concat javascript.
+    This folder contains an example Chrome extension to demonstrate the workflow.
+    Including a demonstration of using the google closure compiler to optimize, obfuscate, and concat javascript.
     You can use the main build script alone or combined with the build scripts under "NewExtension/.build/*" to compile your project and package it for deployment in one shot.
 
 ##### Deprecated: publish-extension-ant-build.xml
