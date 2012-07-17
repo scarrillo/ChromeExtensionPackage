@@ -2,7 +2,7 @@
 
 
 * Demonstration of the main [chrome extension packager script](https://github.com/scarrillo/ChromeExtensionPackage/).
-* Demonstration of using the google chrome compiler to optimize, obfuscate, and concat javascript files. 
+* Demonstration using the google chrome compiler to optimize, obfuscate, and concat javascript files. 
 
 I've included the closure compiler.jar for completeness and so that I can reuse it quickly in new projects.
 The sample starter project is setup to build using closure with advanced optimizations enabled.
