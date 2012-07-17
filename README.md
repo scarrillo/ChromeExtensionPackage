@@ -13,7 +13,7 @@
      - *Examples:* uncompiled source files, build scripts, and private key files.
      - See the exclude file list in build-extension.xml
 
- * NewExtension:
+ * [NewExtension](https://github.com/scarrillo/ChromeExtensionPackage/tree/master/NewExtension):
     This folder contains an example Chrome extension to demonstrate the workflow.
     Including a demonstration of using the google closure compiler to optimize, obfuscate, and concat javascript.
     You can use the main build script alone or combined with the build scripts under "NewExtension/.build/*" to compile your project and package it for deployment in one shot.
