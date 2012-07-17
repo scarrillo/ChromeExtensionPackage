@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	author: shawn.carrillo+chrome@gmail.com
+	date: 2011-08-05
+	ChromeExtensionPackage: https://github.com/scarrillo/ChromeExtensionPackage
+-->
+<project name="ChromeExtensionPackage" default="package" basedir="../">
+	<description>
+		Package a google chrome extension and exclude private files that should never be published.
+	</description>
+
+	<!-- Root build -->
+	<property name="build" value=".build/" />
+	<property file="${build}build.properties" />
+	<!-- Required properties:
+		ext.name 	= name of the final extension: name.crx
+		ext.id 		= Extension ID for chrome web store
+		ext.version = Current version of your extension
+		ext.chrome 	= Path to chrome's executable
+	-->
+
+	<!-- Extension's build directory.  Files will be copied and compiled. The .crx and .zip files will be created in the parent. This directory can be used to load the unpackaged plugin in chrome from, otherwise it is deleted -->
+	<property name="buildDir" value="${build}${ext.name}" />
+	<!-- Path to the extension's files that were copied into the build path -->
+	<property name="extPath" value="${basedir}/${buildDir}" />
+	<!-- Path to the extension's certificate -->
+	<property name="extCert" value="${basedir}/.cert/${ext.name}.pem" />
+
+	<!-- updates.xml properties: see updates.template.xml or updates.xml -->
+	<!-- Used when hosting on a custom server. Not in chrome web store. -->
+	<property name="extCodebase" value="${ext.updateUrl}${ext.name}.crx" />
+	<!-- ex: http://www.example.com/path/to/${ext.name}.crx -->
+
+	<!-- Entry point target, executes the 'copy' target first -->
+	<target name="package" depends="copy" description="Generates a chrome extension" if="build.execute">
+		<exec executable="${ext.chrome}">
+			<arg value="--pack-extension=${extPath}" />
+			<arg value="--pack-extension-key=${extCert}" />
+			<!-- suppress the chrome package success message -->
+			<arg value="--no-message-box" />
+		</exec>
+
+		<!-- Package a non-crx for the chrome web store
+			Updating an extension in the webstore requires key.pem to preserve the extension id.
+			The webstore strips this file out on upload -->
+		<copy file="${extCert}" tofile="${basedir}/${buildDir}/key.pem"/>
+		<zip destfile="${build}/${ext.name}.zip" basedir="${basedir}/${buildDir}" />
+
+		<antcall target="updates" />
+		<antcall target="clean" />
+	</target>
+
+	<target name="copy" depends="verify" if="build.execute" description="copy required extension files to build directory. Exclude non-public src files and project files">
+		<tstamp />
+		<mkdir dir="${buildDir}" />
+
+		<copy todir="${buildDir}" preservelastmodified="true">
+			<fileset dir="${basedir}">
+				<exclude name=".cert/" />
+				<exclude name=".settings/" />
+				<exclude name=".build/" />
+				<exclude name="js-src/" />
+				<exclude name="lib/" />
+				<exclude name=".project" />
+				<exclude name=".gitignore" />
+				<exclude name="build.xml" />
+				<exclude name="publish-extension-ant-build.xml" />
+				<exclude name="updates.xml" />
+				<exclude name="README" />
+			</fileset>
+		</copy>
+		<antcall target="manifest" />
+	</target>
+
+	<target name="verify" description="Verify some configuration settings or fail with error">
+		<fail message="Verify property: ext.name">
+			<condition><or>
+				<not><isset property="ext.name"  /></not>
+				<not><length string="${ext.name}" trim="true" when="greater" length="0" /></not>
+				<matches pattern="##EDIT##" string="${ext.name}" /></or>
+			</condition>
+		</fail>
+		<fail message="Verify property: ext.version">
+			<condition><or>
+				<not><isset property="ext.version"  /></not>
+				<not><length string="${ext.version}" trim="true" when="greater" length="0" /></not>
+				<matches pattern="##EDIT##" string="${ext.version}" /></or>
+			</condition>
+		</fail>
+		<fail message="Verify property: ext.id">
+			<condition><or>
+				<not><isset property="ext.id"  /></not>
+				<not><length string="${ext.id}" trim="true" when="greater" length="0" /></not>
+				<matches pattern="##EDIT##" string="${ext.id}" /></or>
+			</condition>
+		</fail>
+		<fail message="Verify property: ext.chrome">
+			<condition><or>
+				<not><isset property="ext.chrome"  /></not>
+				<not><length string="${ext.chrome}" trim="true" when="greater" length="0" /></not>
+				<matches pattern="##EDIT##" string="${ext.chrome}" /></or>
+			</condition>
+		</fail>
+		<fail message="Verify the path to chrome.exe is correct">
+			<condition>
+				<not><available file="${ext.chrome}" type="file" /></not>
+			</condition>
+		</fail>
+		<property name="build.execute" value="true" />
+	</target>
+
+	<target name="manifest" description="update manfiest.json" if="build.execute">
+		<copy file="manifest.json" tofile="${buildDir}/manifest.json" overwrite="true" force="true">
+			<filterchain>
+				<replacetokens>
+					<token key="extension_name" value="${ext.name}" />
+					<token key="extension_version" value="${ext.version}" />
+				</replacetokens>
+			</filterchain>
+		</copy>
+	</target>
+
+	<target name="updates" description="create updates.xml" if="build.execute">
+		<copy file="updates.xml" tofile="${build}updates.xml" overwrite="true" force="true">
+			<filterchain>
+				<replacetokens>
+					<token key="extension_id" value="${ext.id}" />
+					<token key="extension_codebase" value="${extCodebase}" />
+					<token key="extension_version" value="${ext.version}" />
+				</replacetokens>
+			</filterchain>
+		</copy>
+	</target>
+
+	<target name="clean" description="clean up" if="build.execute">
+		<delete file="${buildDir}/key.pem" verbose="true" />
+		<!-- Useful to load this folder in chrome during development: Load unpacked extension
+		<delete dir="${buildDir}" verbose="false" />
+		-->
+	</target>
+</project>
