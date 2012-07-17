@@ -1,6 +1,8 @@
 ### Chrome Extension/App Ant build script
-    Build script to prepare and package a Google Chrome App or Extension.
-    The script generates a zip file for the Chrome Webstore and a .crx for hosting on a private domain.
+
+Build script to prepare and package a Google Chrome App or Extension.
+
+The script generates a zip file for the Chrome Webstore and a .crx for hosting on a private domain.
 
 ##### Features
  * The packages are prepared with auto updating in mind.
@@ -25,7 +27,7 @@
   
 ##### Quick Start
 
-    ## Expected project structure - See 'NewExtension' for reference.
+###### Expected project structure - See [NewExtension](https://github.com/scarrillo/ChromeExtensionPackage/tree/master/NewExtension) for reference.
     /Extension/
         /.build/
             build-extension.xml
