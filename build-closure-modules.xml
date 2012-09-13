@@ -1,0 +1,49 @@
+<!--
+    author: shawn.carrillo+chrome@gmail.com
+    date: 2012
+    ChromeExtensionPackage: https://github.com/scarrillo/ChromeExtensionPackage
+    Google Closure's Multi-module build syntax. This allows you to use advanced compile across multi-page packages
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="../" default="compile">
+    <target name="compile">
+
+    	<property name="src" value="${basedir}/js-src/" />
+
+
+        <java jar="${basedir}/lib/compiler.jar"
+                fork="true"
+                failonerror="true"
+                maxmemory="128m">
+
+            <arg line="--compilation_level ADVANCED_OPTIMIZATIONS" />
+            <!-- <arg value="debug" /> -->
+            <arg line="--logging_level FINEST" />
+            <arg line="--warning_level VERBOSE" />
+            <arg line="--summary_detail_level 3" />
+            <!-- <arg line="formatting PRETTY_PRINT" /> -->
+            <!-- <arg line="create_source_map build/smap.js" /> -->
+            <!-- <arg line="source_map_format V2" /> -->
+            <arg line="--externs ${src}goog/extern.js" />
+            <arg line="--module mod1:1" />
+            <arg line="--module mod2:1:utils" />
+            <arg line="--module mod3:4:utils,options" />
+            <arg line="--module mod4:1:utils,options" />
+            <arg line="--module mod5:1:background_page" />
+            <arg line="--module_output_path_prefix ${basedir}/js/temp/_" />
+
+            <arg line="--js ${src}mod1.js" />
+            <arg line="--js ${src}mod2.js" />
+
+            <arg line="--js ${src}mod3-1.js" />
+            <arg line="--js ${src}mod3-2.js" />
+            <arg line="--js ${src}mod3-3.js" />
+            <arg line="--js ${src}mod3-4.js" />
+
+			<arg line="--js ${src}mod-4-1.js" />
+			<arg line="--js ${src}mod4-1.js" />
+
+        </java>
+
+    </target>
+</project>
