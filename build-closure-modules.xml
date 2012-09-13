@@ -40,8 +40,8 @@
             <arg line="--js ${src}mod3-3.js" />
             <arg line="--js ${src}mod3-4.js" />
 
-			<arg line="--js ${src}mod-4-1.js" />
-			<arg line="--js ${src}mod4-1.js" />
+            <arg line="--js ${src}mod4-1.js" />
+            <arg line="--js ${src}mod5-1.js" />
 
         </java>
 
