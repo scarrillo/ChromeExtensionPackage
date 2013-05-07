@@ -1,3 +1,9 @@
+###### Update: Gruntjs Port of the ant scripts
+Recently ported this over to a Gruntjs task.
+- on git: https://github.com/scarrillo/grunt-chrome-compile
+- on npm: https://npmjs.org/package/grunt-chrome-compile
+
+
 ### Chrome Extension/App Ant build script
 
 Build script to prepare and package a Google Chrome App or Extension.
