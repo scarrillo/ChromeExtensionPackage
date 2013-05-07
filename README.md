@@ -1,5 +1,4 @@
-###### Update: Gruntjs Port of the ant scripts
-Recently ported this over to a Gruntjs task.
+###### Update: Recently ported the ant scripts over to a Gruntjs task.
 - on git: https://github.com/scarrillo/grunt-chrome-compile
 - on npm: https://npmjs.org/package/grunt-chrome-compile
 
