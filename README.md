@@ -3,6 +3,7 @@ Recently ported this over to a Gruntjs task.
 - on git: https://github.com/scarrillo/grunt-chrome-compile
 - on npm: https://npmjs.org/package/grunt-chrome-compile
 
+---
 
 ### Chrome Extension/App Ant build script
 
