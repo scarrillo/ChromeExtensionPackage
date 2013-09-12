@@ -25,24 +25,21 @@
             <!-- <arg line="create_source_map build/smap.js" /> -->
             <!-- <arg line="source_map_format V2" /> -->
             <arg line="--externs ${src}goog/extern.js" />
-            <arg line="--module mod1:1" />
-            <arg line="--module mod2:1:utils" />
-            <arg line="--module mod3:4:utils,options" />
-            <arg line="--module mod4:1:utils,options" />
-            <arg line="--module mod5:1:background_page" />
+            <arg line="--module package1:1" />
+            <arg line="--module package2:1:package1" />
+            <arg line="--module package3:4:package1,package2" />
+            <arg line="--module mod4:1:package3" />
             <arg line="--module_output_path_prefix ${basedir}/js/temp/_" />
 
-            <arg line="--js ${src}mod1.js" />
-            <arg line="--js ${src}mod2.js" />
+            <arg line="--js ${src}package1-source1.js" />
+            <arg line="--js ${src}package2-source1.js" />
 
-            <arg line="--js ${src}mod3-1.js" />
-            <arg line="--js ${src}mod3-2.js" />
-            <arg line="--js ${src}mod3-3.js" />
-            <arg line="--js ${src}mod3-4.js" />
+            <arg line="--js ${src}package3-source1.js" />
+            <arg line="--js ${src}package3-source2.js" />
+            <arg line="--js ${src}package3-source3.js" />
+            <arg line="--js ${src}package3-source4.js" />
 
-            <arg line="--js ${src}mod4-1.js" />
-            <arg line="--js ${src}mod5-1.js" />
-
+            <arg line="--js ${src}package4-source1.js" />
         </java>
 
     </target>
