@@ -36,7 +36,7 @@
 
             <!-- package1 source files -->
             <arg line="--js ${src}package1-source1.js" />
-            <!-- package1 source files -->
+            <!-- package2 source files -->
             <arg line="--js ${src}package2-source1.js" />
             <!-- package3 source files -->
             <arg line="--js ${src}package3-source1.js" />
