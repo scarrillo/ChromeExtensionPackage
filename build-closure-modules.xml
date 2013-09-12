@@ -34,14 +34,16 @@
             <arg line="--module package4:1:package3" />
             <arg line="--module_output_path_prefix ${basedir}/js/temp/_" />
 
+            <!-- package1 source files -->
             <arg line="--js ${src}package1-source1.js" />
+            <!-- package1 source files -->
             <arg line="--js ${src}package2-source1.js" />
-
+            <!-- package3 source files -->
             <arg line="--js ${src}package3-source1.js" />
             <arg line="--js ${src}package3-source2.js" />
             <arg line="--js ${src}package3-source3.js" />
             <arg line="--js ${src}package3-source4.js" />
-
+            <!-- package4 source files -->
             <arg line="--js ${src}package4-source1.js" />
         </java>
 
